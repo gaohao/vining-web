@@ -1,0 +1,45 @@
+extends layout
+
+block scripts
+  link(rel='stylesheet', href='http://vjs.zencdn.net/c/video-js.css')
+  script(type='text/javascript', src='/socket.io/socket.io.js')
+  script(type='text/javascript', src='http://vjs.zencdn.net/c/video.js')
+  script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+  script(type='text/javascript')
+    
+
+block content
+  div#chat
+  div
+    video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='640', height='264', data-setup='{}')
+
+block scriptfoot
+  script(type='text/javascript')
+    var videoPlayer = _V_('videoPlayer');
+    var socket = io.connect('http://198.23.161.51');
+    
+    var submitChat = function(form) {
+      socket.emit('chat', {text: form.chat.value});
+      return false;
+    };
+
+    videoPlayer.ready(function(){
+      var videoPlayer = this;
+      videoPlayer.play();
+    });
+    
+    var onended = function(){
+      var videoPlayer = this;
+      socket.emit('chat', 'ended');
+      
+    };
+    videoPlayer.addEvent('ended', onended);
+
+    socket.on('chat', function(data) {
+      document.getElementById('chat').innerHTML =
+        '<p><b>' + data.title + '</b>: ' + data.link + '</p>';
+
+      videoPlayer.src(data.link);
+      videoPlayer.play();
+
+    });
