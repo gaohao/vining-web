@@ -11,9 +11,13 @@ rc.smembers("vine:link", function (err, replies) {
         catchPhrases = replies;
         rc.quit();
     });
+
 app.set('view engine', 'jade');
 app.set('view options', { layout: true });
 app.set('views', __dirname + '/views');
+
+app.use(express.static(__dirname + '/static')); //why app.use('/static', express.static(__dirname + '/static'));?
+console.log(__dirname + '/static');
 
 app.get('/random', function(req, res, next) {
   res.render('video');
@@ -39,6 +43,6 @@ app.get('/?', function(req, res){
   res.render('index');
 });
 
-var port = 80;
+var port = 9000;
 server.listen(port);
 console.log('Listening on port ' + port);
