@@ -5,13 +5,18 @@ block scripts
   script(type='text/javascript', src='/socket.io/socket.io.js')
   script(type='text/javascript', src='http://vjs.zencdn.net/c/video.js')
   script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet', href='/css/bootstrap.min.css', media='screen')
   script(type='text/javascript')
-    
+  
 
 block content
-  div#chat
-  div
-    video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='640', height='264', data-setup='{}')
+  div(class='container-narrow')
+    div(class='row')
+      div(class='span6')
+        div#chat
+      div(class='span6')
+        video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
 
 block scriptfoot
   script(type='text/javascript')
