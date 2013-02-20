@@ -42,7 +42,7 @@ block scriptfoot
 
     socket.on('chat', function(data) {
       document.getElementById('chat').innerHTML =
-        '<p><b>' + data.title + '</b>: ' + data.link + '</p>';
+        '<p><b>' + data.text + '</b>: ' + data.link + '</p>';
 
       videoPlayer.src(data.link);
       videoPlayer.play();
