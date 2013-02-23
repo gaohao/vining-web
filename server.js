@@ -6,7 +6,6 @@ var io = require('socket.io').listen(server);
 var redis = require("redis"),
         rc = redis.createClient();
 
-
 app.set('view engine', 'jade');
 app.set('view options', { layout: true });
 app.set('views', __dirname + '/views');
@@ -26,8 +25,8 @@ io.sockets.on('connection', function(socket) {
   };
   
   var reloadVideos = function() {
-    rc.zcard("vine:link:realtime", function (err, count) {
-      rc.zrange("vine:link:realtime", count - 20, count - 1, function (err, replies) {
+    rc.zcard('vine:link:realtime', function (err, count) {
+      rc.zrange('vine:link:realtime', count - 20, count - 1, function (err, replies) {
         for (var i = 0; i < replies.length - 1; i++) {
           
           rc.hvals(replies[i], function (err, replies2) {
@@ -63,8 +62,8 @@ io.sockets.on('connection', function(socket) {
           msg = msgs.pop()
           sendChat(msg[0], msg[1], msg[2]);
       } else {
-        rc.zcard("vine:link:realtime", function (err, count) {
-          rc.zrange("vine:link:realtime", count - 20, count - 1, function (err, replies) {
+        rc.zcard('vine:link:realtime', function (err, count) {
+          rc.zrange('vine:link:realtime', count - 20, count - 1, function (err, replies) {
             for (var i = 0; i < replies.length - 1; i++) {
               
               rc.hvals(replies[i], function (err, replies2) {
