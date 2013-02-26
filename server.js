@@ -18,7 +18,7 @@ var msgs = [];
 
 io.sockets.on('connection', function(socket) {
 
-  var sendChat = function(text, created_at, link) {
+  var sendChat = function(created_at, link, text) {
     socket.emit('chat', {
       text: text,
       created_at: created_at,
