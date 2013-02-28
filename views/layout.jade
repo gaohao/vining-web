@@ -3,6 +3,9 @@ html(lang='en')
 	head  
 		title Vine Stream
 
+		block scripthead
+			meta(name='viewport', content='width=device-width, initial-scale=1.0')
+			link(rel='stylesheet', href='/css/bootstrap.min.css', media='screen')
 		block trackid
 			script(type='text/javascript')
 				var _gaq = _gaq || [];
@@ -17,6 +20,21 @@ html(lang='en')
 				})();
 
 		block scripts
-	body
+	body(style="text-align:center")
+		block header
+			div(class='container-narrow')
+				div(class='row')
+					div(class='span12')
+						p
+							| Hello
 		block content
 		block scriptfoot
+		block footer
+			div(class='container-narrow')
+				div(class='row')
+					div(class='span12')
+						div(style="text-align:center")
+							| Created by 
+							a(href="http://github.com/gaohao")
+								| Gao Hao
+
