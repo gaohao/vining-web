@@ -7,12 +7,22 @@ block scripts
   script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
   
 block content
-  div(class='container-narrow')
-    div(class='row')
-      div(class='span6')
-        div#chat
-      div(class='span6 offset3')
-        video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
+  div(class='container-fluid')
+    div(class='row-fluid')
+      div(class='span12')
+        div(style="margin: 0px auto; width: 480px;")
+          img(src="https://twimg0-a.akamaihd.net/profile_images/3285832769/c412c53f0059307fab3e47f8667c7db8_bigger.jpeg", height="42", width="42")
+          a(href="https://twitter.com/haogao_")
+            |@haogao_
+    hr
+    div(class='row-fluid')
+      div(class='span12')
+        p#text(style="text-align:center")
+    hr
+    div(class='row-fluid')
+      div(class='span12')
+        div(style="margin: 0px auto; width: 480px;")
+          video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
 
 block scriptfoot
   script(type='text/javascript')
@@ -37,9 +47,8 @@ block scriptfoot
     videoPlayer.addEvent('ended', onended);
 
     socket.on('chat', function(data) {
-      document.getElementById('chat').innerHTML =
-        '<p><b>' + data.text + '</b>: ' + data.link + '</p>';
-
+      $('#text').text(data.text );
+  
       videoPlayer.src(data.link);
       videoPlayer.play();
 
