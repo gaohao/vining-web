@@ -1,9 +1,12 @@
 !!! 5
 html(lang='en')  
 	head  
-		title Vine Stream
-		block scriptshead
-			
+		title Vine Stream |  watch the six seconds world
+
+		block scripthead
+			meta(name='viewport', content='width=device-width, initial-scale=1.0')
+			link(rel='stylesheet', href='/css/bootstrap.css', media='screen')
+			link(href="css/bootstrap-responsive.css", rel="stylesheet")
 		block trackid
 			script(type='text/javascript')
 				var _gaq = _gaq || [];
@@ -18,6 +21,44 @@ html(lang='en')
 				})();
 
 		block scripts
-	body
+	body(style="padding-top: 60px;")
+		block header
+			div(class="navbar navbar-inverse navbar-fixed-top")
+				div(class="navbar-inner")
+					div(class="container-fluid")
+						button(type="button", class="btn btn-navbar", data-toggle="collapse", data-target=".nav-collapse")
+							span(class="icon-bar")
+							span(class="icon-bar")
+							span(class="icon-bar")
+						a(class="brand",href="#")
+							|Vine Stream
+						div(class="nav-collapse collapse")
+							ul(class="nav")
+								li(class="active")
+									a(href="#")
+										|Home
+
 		block content
 		block scriptfoot
+		block scriptfooter
+			script(src="js/jquery.js")
+			script(src="js/bootstrap-transition.js")
+			script(src="js/bootstrap-alert.js")
+			script(src="js/bootstrap-modal.js")
+			script(src="js/bootstrap-dropdown.js")
+			script(src="js/bootstrap-scrollspy.js")
+			script(src="js/bootstrap-tab.js")
+			script(src="js/bootstrap-tooltip.js")
+			script(src="js/bootstrap-popover.js")
+			script(src="js/bootstrap-button.js")
+			script(src="js/bootstrap-collapse.js")
+			script(src="js/bootstrap-carousel.js")
+			script(src="js/bootstrap-typeahead.js")
+		block footer
+			hr
+			footer
+				p(style="text-align:center")
+					| Created by 
+					a(href="http://github.com/gaohao")
+						| Gao Hao
+
