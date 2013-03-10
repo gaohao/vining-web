@@ -16,12 +16,11 @@ app.use(express.static(__dirname + '/static')); //why app.use('/static', express
 
 var msgs = [];
 
-var sendChat = function(socket, link, text, created_at) {
-  socket.emit('chat', {
-    text: text,
-    created_at: created_at,
-    link: link
-  });
+var sendChat = function(socket, json) {
+ 
+  var obj = JSON.parse(json);
+  //console.log(obj);
+  socket.emit('chat', obj);
 };
 
 var reloadVideos = function(socket) {
@@ -29,25 +28,14 @@ var reloadVideos = function(socket) {
     rc.zrange('vine:link:realtime', count - 20, count - 1, function(err, replies) {
       for (var i = 0; i < replies.length - 1; i++) {
 
-        rc.hvals(replies[i], function(err, replies2) {
-          var msg = [];
-          for (var j = 0; j < replies2.length; j++) {
-            msg.push(replies2[j]);
-          }
-          msgs.push(msg);
+        rc.get(replies[i], function(err, replies2) {
+          msgs.push(replies2);
           console.log(msgs.length);
-
         });
-
       }
 
-      rc.hvals(replies[replies.length - 1], function(err, replies2) {
-        var msg = [];
-        for (var j = 0; j < replies2.length; j++) {
-          msg.push(replies2[j]);
-        }
-
-        sendChat(socket, msg[0], msg[1], msg[2]);
+      rc.get(replies[replies.length - 1], function(err, replies2) {
+        sendChat(socket, replies2);
       });
     });
   });
@@ -62,7 +50,7 @@ io.sockets.on('connection', function(socket) {
     if (msgs.length != 0) {
       console.log(msgs.length);
       msg = msgs.pop()
-      sendChat(socket, msg[0], msg[1], msg[2]);
+      sendChat(socket, msg);
     } else {
       reloadVideos(socket);
     }
