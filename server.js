@@ -18,7 +18,7 @@ var msgs = [];
 
 io.sockets.on('connection', function(socket) {
 
-  var sendChat = function(created_at, link, text) {
+  var sendChat = function(link, text, created_at) {
     socket.emit('chat', {
       text: text,
       created_at: created_at,
@@ -77,6 +77,6 @@ app.get('/?', function(req, res) {
   res.render('index');
 });
 
-var port = 80;
+var port = 9000;
 server.listen(port);
 console.log('Listening on port ' + port);

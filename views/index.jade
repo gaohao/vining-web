@@ -27,7 +27,7 @@ block content
 block scriptfoot
   script(type='text/javascript')
     var videoPlayer = _V_('videoPlayer');
-    var socket = io.connect('http://198.23.161.51');
+    var socket = io.connect('http://127.0.0.1:9000');
     
     var submitChat = function(form) {
       socket.emit('chat', {text: form.chat.value});
