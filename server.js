@@ -64,38 +64,13 @@ io.sockets.on('connection', function(socket) {
       msg = msgs.pop()
       sendChat(msg[0], msg[1], msg[2]);
     } else {
-      rc.zcard('vine:link:realtime', function(err, count) {
-        rc.zrange('vine:link:realtime', count - 20, count - 1, function(err, replies) {
-          for (var i = 0; i < replies.length - 1; i++) {
-
-            rc.hvals(replies[i], function(err, replies2) {
-              var msg = [];
-              for (var j = 0; j < replies2.length; j++) {
-                msg.push(replies2[j]);
-              }
-              msgs.push(msg);
-              console.log(msgs.length);
-
-            });
-
-          }
-
-          rc.hvals(replies[replies.length - 1], function(err, replies2) {
-            var msg = [];
-            for (var j = 0; j < replies2.length; j++) {
-              msg.push(replies2[j]);
-            }
-
-            sendChat(msg[0], msg[1], msg[2]);
-          });
-        });
-      });
+      reloadVideos();
     }
   });
 });
 
 app.get('/random', function(req, res, next) {
-  res.render('video');
+  res.render('index');
 });
 
 app.get('/?', function(req, res) {
