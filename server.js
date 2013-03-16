@@ -65,6 +65,6 @@ app.get('/?', function(req, res) {
   res.render('index');
 });
 
-var port = 9000;
+var port = 80;
 server.listen(port);
 console.log('Listening on port ' + port);
