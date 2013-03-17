@@ -1,55 +1,64 @@
 extends layout
 
 block scripts
-  link(rel='stylesheet', href='http://vjs.zencdn.net/c/video-js.css')
-  script(type='text/javascript', src='/socket.io/socket.io.js')
-  script(type='text/javascript', src='http://vjs.zencdn.net/c/video.js')
-  script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+	link(rel='stylesheet', href='http://vjs.zencdn.net/c/video-js.css')
+	script(type='text/javascript', src='/socket.io/socket.io.js')
+	script(type='text/javascript', src='http://vjs.zencdn.net/c/video.js')
+	script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
   
 block content
-  div(class='container-fluid')
-    div(class='row-fluid')
-      div(class='span12')
-        div(style="margin: 0px auto; width: 480px;")
-          img(src="https://twimg0-a.akamaihd.net/profile_images/3285832769/c412c53f0059307fab3e47f8667c7db8_bigger.jpeg", height="42", width="42")
-          a(href="https://twitter.com/haogao_")
-            |@haogao_
-    hr
-    div(class='row-fluid')
-      div(class='span12')
-        p#text(style="text-align:center")
-    hr
-    div(class='row-fluid')
-      div(class='span12')
-        div(style="margin: 0px auto; width: 480px;")
-          video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
+	div(class='container-fluid')
+	div(class='row-fluid')
+		div(class='span12')
+			div(style='margin: 0px auto; width: 480px;')
+				table
+					tr
+						th(align='left', width='100')
+							img#profile_image_url(src='', height='42', width='42')
+						th(align='right')
+							a#user_url(href='')
+	hr
+	div(class='row-fluid')
+		div(class='span12')
+			p#text(style="text-align:center")
+	hr
+	div(class='row-fluid')
+		div(class='span12')
+			div(style="margin: 0px auto; width: 480px;")
+				video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
 
 block scriptfoot
-  script(type='text/javascript')
-    var videoPlayer = _V_('videoPlayer');
-    var socket = io.connect('http://vinestream.co');
-    
-    var submitChat = function(form) {
-      socket.emit('chat', {text: form.chat.value});
-      return false;
-    };
+	script(type='text/javascript')
+		var videoPlayer = _V_('videoPlayer');
+		var socket = io.connect('');
 
-    videoPlayer.ready(function(){
-      var videoPlayer = this;
-      videoPlayer.play();
-    });
-    
-    var onended = function(){
-      var videoPlayer = this;
-      socket.emit('chat', 'ended');
-      
-    };
-    videoPlayer.addEvent('ended', onended);
+		var submitChat = function(form) {
+			socket.emit('chat', {text: form.chat.value});
+			return false;
+		};
 
-    socket.on('chat', function(data) {
-      $('#text').text(data.text );
-  
-      videoPlayer.src(data.link);
-      videoPlayer.play();
+		videoPlayer.ready(function(){
+			var videoPlayer = this;
+			videoPlayer.play();
+		});
 
-    });
+		var onended = function(){
+			var videoPlayer = this;
+			socket.emit('chat', 'ended');
+
+		};
+		videoPlayer.addEvent('ended', onended);
+
+		socket.on('chat', function(data) {
+			$('#text').text(data.text );
+			$('#profile_image_url').attr({
+				src: data.profile_image_url,
+				title: "",
+				alt: ""
+				});
+			$('#user_url').text('@' + data.from_user);
+			$('#user_url').attr({href: 'https://twitter.com/' + data.from_user});
+
+			videoPlayer.src(data.link);
+			videoPlayer.play();
+		});

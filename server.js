@@ -1,3 +1,4 @@
+var nconf = require('nconf');
 var express = require('express');
 var http = require('http');
 var app = express();
@@ -65,6 +66,10 @@ app.get('/?', function(req, res) {
   res.render('index');
 });
 
-var port = 80;
+
+nconf.argv().env();
+nconf.file({ file: 'config/devconfig.json' });
+
+var port = nconf.get('http:port');
 server.listen(port);
 console.log('Listening on port ' + port);

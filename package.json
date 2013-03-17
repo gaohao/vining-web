@@ -9,7 +9,8 @@
     "forever": "~0.10.0",
     "jade": "~0.28.1",
     "redis": "~0.8.2",
-    "socket.io": "~0.9.13"
+    "socket.io": "~0.9.13",
+    "nconf": "~0.6.7"
   },
   "devDependencies": {},
   "scripts": {
