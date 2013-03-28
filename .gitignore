@@ -6,6 +6,12 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.swo
+*.swp
+1
+2
+[
+]
 
 pids
 logs

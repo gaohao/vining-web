@@ -3,9 +3,10 @@ extends layout
 block scripts
 	link(rel='stylesheet', href='http://vjs.zencdn.net/c/video-js.css')
 	script(type='text/javascript', src='/socket.io/socket.io.js')
-	script(type='text/javascript', src='http://vjs.zencdn.net/c/video.js')
 	script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
-  
+	script(type='text/javascript', src='/video-js/video.min.js')
+	script(type='text/javascript', src='/video-js/video-config.js')
+
 block content
 	div(class='container-fluid')
 	div(class='row-fluid')
@@ -26,6 +27,7 @@ block content
 		div(class='span12')
 			div(style="margin: 0px auto; width: 480px;")
 				video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='480', height='480', data-setup='{}')
+						source(type='video/mp4', src='')
 
 block scriptfoot
 	script(type='text/javascript')
@@ -62,3 +64,5 @@ block scriptfoot
 			videoPlayer.src(data.link);
 			videoPlayer.play();
 		});
+
+		//videoPlayer.src('http://video-js.zencoder.com/oceans-clip.mp4');
