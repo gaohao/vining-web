@@ -1,0 +1,44 @@
+!!! 5
+html
+  head
+    title Vine Stream
+    meta(charset='utf-8')
+    link(rel='stylesheet', type='text/css', href='/css/index.css')
+    script(type='text/javascript', src='/js/video-js/video.js')
+  body
+    #wrapper
+      #navigation
+        a(href='#')
+          img.logo(src='/img/logo.png', alt='vine stream logo')
+        ul.nav
+          li.nav-item.transition
+            a(href='#') HOME
+          li.nav-item.transition
+            a(href='#') CHANNEL
+          li.nav-item.transition
+            a(href='#') ABOUT US
+        ul.share
+          li.share-item
+            a(href='#')
+              img(src='/img/facebook.png', alt='facebook')
+          li.share-item.suck-item
+            a(href='#')
+              img(src='/img/twitter.png', alt='twitter')
+          li.share-item
+            a(href='#')
+              img(src='/img/googleplus.png', alt='google+')
+      #show
+        video#display.video-js.vjs-default-skin( width='570', height='570', data-setup='{"autoplay":true, "controls":true, "preload": "none"}')
+          source(src='', type='video/mp4')
+      #controls
+        #controls-inner
+          #profile
+            a(href='#')
+              img.avatar.radius(src='/img/default.png', alt='Avatar')
+            p.info
+          ul.controls
+            li.controls-item
+              a.audio(href='#')
+            li.controls-item
+              a.video(href='#')
+      script(type='text/javascript', src='js/seajs/sea.js', data-config='vine-stream/config.js',data-main='vine-stream/main.js')   
