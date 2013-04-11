@@ -62,6 +62,9 @@ app.get('/?', function(req, res) {
 	res.render('index');
 });
 
+app.get('/vine-stream', function (req, res) {
+	res.render('vine-stream');
+});
 
 nconf.argv().env();
 nconf.file({ file: 'config/devconfig.json' });
