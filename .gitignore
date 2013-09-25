@@ -8,11 +8,8 @@ lib-cov
 *.gz
 *.swo
 *.swp
-1
-2
-[
-]
 
+config/devconfig.json
 pids
 logs
 results
