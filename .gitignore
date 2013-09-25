@@ -9,7 +9,6 @@ lib-cov
 *.swo
 *.swp
 
-config/devconfig.json
 pids
 logs
 results
