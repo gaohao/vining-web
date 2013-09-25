@@ -1,0 +1,176 @@
+/* @group general styles
+--------------------------------------------------------------------------------*/
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+input {
+	outline: none;
+}
+
+/* @group helper styles
+--------------------------------------------------------------------------------*/
+.radius {
+	border-radius: 6px; 
+	-ms-border-radius: 6px; 
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	-o-border-radius: 6px; 
+}
+
+.transition {
+	transition: all ease-in 0.1s;
+	-webkit-transition: all ease-in 0.1s;
+	-o-transition: all ease-in 0.1s;
+	-ms-transition: all ease-in 0.1s;
+	-moz-transition: all ease-in 0.1s;
+}
+/* @group page structure
+--------------------------------------------------------------------------------*/
+#wrapper {
+	position: relative;
+	padding: 20px;
+	margin-top: 40px;
+	width: 1024px;
+	min-height: 500px;
+	overflow: hidden;
+	outline: #ccc;
+	margin: 0 auto;
+}
+
+#navigation {
+	width: 220px;
+	float: left;
+}
+
+#show {
+	float: left;
+}
+
+#controls {
+	float: left;
+	background: #fff;
+}
+
+#display {
+	border-radius: 15px;
+}
+
+/* @group page componets
+--------------------------------------------------------------------------------*/
+#navigation img.logo {
+	width: 150px;
+}
+
+#navigation li.nav-item {
+	text-align: left;
+	padding-left: 37px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#navigation ul.nav {
+	margin-top: 20px;
+	margin-bottom: 45px;
+}
+#navigation li.nav-item a {
+	color: rgb(129, 127, 127);
+}
+#navigation li.nav-item:hover {
+	text-shadow: 0px 0px 50px rgb(155, 172, 202);
+	font-size: 20px;
+}
+
+#navigation ul.share {
+	margin-left: 30px;
+	overflow: hidden;
+}
+
+#navigation ul.share li.share-item {
+	width: 36px;
+	height: 36px;
+	float: left;
+}
+
+#navigation ul.share li.suck-item {
+	margin-top: -3px; 
+}
+
+#controls {
+	position: absolute;
+	bottom: 15px;
+	right: 100px;
+	overflow: hidden;
+}
+
+#profile {
+	overflow:hidden;
+	text-align: center;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+
+#profile a {
+	font-weight: bold;
+	font-size: 14px;
+	color: #0088cc;
+	text-decoration: none;
+}
+
+#profile p {
+	width: 120px;
+}
+
+#profile img.avatar {
+	width: 80px;
+	height: 80px;
+	box-shadow: 0px 0px 15px rgb(158, 150, 150);
+	-webkit-box-shadow: 0px 0px 15px rgb(158, 150, 150);
+	-moz-box-shadow: 0px 0px 15px rgb(158, 150, 150);
+	-o-box-shadow: 0px 0px 15px rgb(158, 150, 150);
+	-ms-box-shadow: 0px 0px 15px rgb(158, 150, 150);
+}
+
+#controls-inner ul.controls {
+	overflow: hidden;
+}
+
+#controls-inner li.controls-item {
+	float: left;
+	margin-right: 10px;
+	width: 50px;
+	height: 50px;
+}
+
+#controls-inner li.controls-item a {
+	display: block;
+	height: 100%;
+	width: 100%;
+} 
+
+#controls-inner li.controls-item a.audio {
+	background: url('../img/audio.png') 0px -2px;
+} 
+
+#controls-inner li.controls-item a.video {
+	background: url('../img/video.png') 0px 0px;
+} 
+
+/* @group ovrride
+--------------------------------------------------------------------------------*/
