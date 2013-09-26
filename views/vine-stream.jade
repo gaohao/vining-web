@@ -5,6 +5,10 @@ html
     meta(charset='utf-8')
     link(rel='stylesheet', type='text/css', href='/css/index.css')
     script(type='text/javascript', src='/js/video-js/video.js')
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    script(type='text/javascript', src='/video-js/video.min.js')
+    script(type='text/javascript', src='/video-js/video-config.js')
   body
     #wrapper
       #navigation
@@ -28,13 +32,14 @@ html
             a(href='#')
               img(src='/img/googleplus.png', alt='google+')
       #show
-        video#display.video-js.vjs-default-skin( width='570', height='570', data-setup='{"autoplay":true, "controls":true, "preload": "none"}')
-          source(src='', type='video/mp4')
+        video(controls, autoplay, id='videoPlayer', class='video-js vjs-default-skin', preload='auto', width='570', height='570', data-setup='{}')
+            source(type='video/mp4', src='')
       #controls
         #controls-inner
+          a#user_url(href='')
           #profile
             a(href='#')
-              img.avatar.radius(src='/img/default.png', alt='Avatar')
+              img#profile_image_url.avatar.radius(src='/img/default.png', alt='Avatar')
             p.info
           ul.controls
             li.controls-item
@@ -42,3 +47,37 @@ html
             li.controls-item
               a.video(href='#')
       script(type='text/javascript', src='js/seajs/sea.js', data-config='vine-stream/config.js',data-main='vine-stream/main.js')   
+      script(type='text/javascript')
+        var videoPlayer = _V_('videoPlayer');
+        var socket = io.connect('');
+
+        var submitChat = function(form) {
+          socket.emit('chat', {text: form.chat.value});
+          return false;
+        };
+
+        videoPlayer.ready(function(){
+          var videoPlayer = this;
+          videoPlayer.play();
+        });
+
+        var onended = function(){
+          var videoPlayer = this;
+          socket.emit('chat', 'ended');
+
+        };
+        videoPlayer.addEvent('ended', onended);
+
+        socket.on('chat', function(data) {
+          $('#text').text(data.text );
+          $('#profile_image_url').attr({
+            src: data.author.profile_image_url,
+            title: "",
+            alt: ""
+            });
+          $('#user_url').text('@' + data.author.screen_name);
+          $('#user_url').attr({href: 'https://twitter.com/' + data.author.screen_name});
+
+          videoPlayer.src(data.link);
+          videoPlayer.play();
+        });

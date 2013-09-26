@@ -13,7 +13,7 @@ app.set('view options', {
 });
 app.set('views', __dirname + '/views');
 
-app.use(express.static(__dirname + '/static')); //why app.use('/static', express.static(__dirname + '/static'));?
+app.use(express.static(__dirname + '/static')); 
 
 var msgs = [];
 
@@ -53,16 +53,12 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
-app.get('/random', function(req, res, next) {
-    res.render('index');
-});
-
 app.get('/?', function(req, res) {
-    res.render('index');
+    res.render('vine-stream');
 });
 
 app.get('/vine-stream', function(req, res) {
-	res.render('vine-stream');
+	res.render('index');
 });
 
 nconf.argv().env();
