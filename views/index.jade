@@ -54,15 +54,13 @@ block scriptfoot
 		socket.on('chat', function(data) {
 			$('#text').text(data.text );
 			$('#profile_image_url').attr({
-				src: data.profile_image_url,
+				src: data.author.profile_image_url,
 				title: "",
 				alt: ""
 				});
-			$('#user_url').text('@' + data.from_user);
-			$('#user_url').attr({href: 'https://twitter.com/' + data.from_user});
+			$('#user_url').text('@' + data.author.screen_name);
+			$('#user_url').attr({href: 'https://twitter.com/' + data.author.screen_name});
 
 			videoPlayer.src(data.link);
 			videoPlayer.play();
 		});
-
-		//videoPlayer.src('http://video-js.zencoder.com/oceans-clip.mp4');

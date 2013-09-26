@@ -27,7 +27,6 @@ var reloadVideos = function(socket) {
     rc.zcard('vine:link:realtime', function(err, count) {
         rc.zrange('vine:link:realtime', count - 20, count - 1, function(err, replies) {
             for (var i = 0; i < replies.length - 1; i++) {
-
                 rc.get(replies[i], function(err, replies2) {
                     msgs.push(replies2);
                     console.log(msgs.length);
@@ -62,7 +61,7 @@ app.get('/?', function(req, res) {
     res.render('index');
 });
 
-app.get('/vine-stream', function (req, res) {
+app.get('/vine-stream', function(req, res) {
 	res.render('vine-stream');
 });
 
