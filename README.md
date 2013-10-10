@@ -11,6 +11,3 @@ So, Any help is appreciated.
 npm install  
 sudo forever start server.js  
 </pre>
-
-Contributors:
-* Zhuolin Liu ([@lzl1024](https://github.com/lzl1024))
